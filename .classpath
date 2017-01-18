@@ -60,5 +60,6 @@
 	<classpathentry kind="lib" path="C:/Users/velis/Desktop/google-api-services-translate-v2-rev48-java-1.22.0/translate/libs-sources/jetty-6.1.26-sources.jar"/>
 	<classpathentry kind="lib" path="C:/Users/velis/Desktop/google-api-services-translate-v2-rev48-java-1.22.0/translate/libs-sources/jetty-util-6.1.26-sources.jar"/>
 	<classpathentry kind="lib" path="C:/Users/velis/Desktop/google-api-services-translate-v2-rev48-java-1.22.0/translate/libs-sources/transaction-api-1.1-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/velis/Desktop/google-api-translate-java-0.95.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

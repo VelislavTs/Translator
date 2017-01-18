@@ -76,7 +76,6 @@ public class TranslatorUI {
 				TitledBorder.TOP, null, new Color(0, 0, 0)));
 		frame.getContentPane().add(userInputPanel);
 		userInputPanel.setLayout(null);
-
 		userInputText = new JTextField();
 		userInputText.setFont(new Font("Arial Narrow", Font.BOLD | Font.ITALIC, 21));
 		userInputText.setColumns(10);
@@ -120,7 +119,7 @@ public class TranslatorUI {
 			public void mouseClicked(MouseEvent arg0) {
 				
 				String userHomeFolder = System.getProperty("user.home") + "/Desktop";
-				File textFile = new File(userHomeFolder, "myPic.png");
+				File textFile = new File(userHomeFolder, "TranslatorScreenshot%d.png");
 				try {
 					BufferedWriter out = new BufferedWriter(new FileWriter(textFile));
 				} catch (IOException e1) {
@@ -131,7 +130,7 @@ public class TranslatorUI {
 				
 				try {
 					capture = new Robot().createScreenCapture(screenRect);
-					ImageIO.write(capture, "bmp", textFile);
+					ImageIO.write(capture, "jpeg", textFile);
 				} catch (IOException e) {
 					e.printStackTrace();
 				} catch (AWTException e) {

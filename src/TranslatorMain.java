@@ -1,6 +1,6 @@
 import java.awt.EventQueue;
 
-public class TranslatorMain extends TranslatorAPI {
+public class TranslatorMain extends TranslatorUI {
 
 	public static void main(String[] args) {
 
