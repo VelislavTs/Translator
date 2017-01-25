@@ -25,7 +25,7 @@ public class TranslateText {
 			String[] userInputArray = userInputSentence.split(" ");
 			String currentEnglishWord = null;
 			String currentWord = " ";
-			String searchedWord = " " ;
+			String searchedWord = " ";
 
 			int currentLine = 0;
 			File bulgarianWords = new File("C:\\Users\\velis\\Desktop\\BulgarianWords.txt");
