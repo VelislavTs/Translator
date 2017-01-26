@@ -221,7 +221,7 @@ public class TranslatorUI {
 					// if the loop finds no matches throughout the document it
 					// returns the word
 
-					if (currentLine == MAX_ROWS + 1) {
+					if (currentLine == MAX_ROWS + 2) {
 						translatedSentence.add(userInputSentence.get(0));
 						break;
 					}
