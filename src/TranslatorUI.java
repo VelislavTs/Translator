@@ -162,8 +162,9 @@ public class TranslatorUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
-	public static int LINE_NUM = 0;
-	public static int MAX_ROWS;
+	public static int lineNumber = 0;
+	public static int MAX_ROWS = countLines() - 1;
+	public static String textForTranslation = " ";
 
 	public static String returnTranslatedText(String inputText) {
 
@@ -172,17 +173,17 @@ public class TranslatorUI {
 
 		try {
 
-			String textForTranslation = inputText;
+			textForTranslation = inputText;
 			int currentLine = 0;
-			File englishWords = new File("C:\\Users\\velis\\Desktop\\EnglishWords.txt");
-			File bulgarianWords = new File("C:\\Users\\velis\\Desktop\\BulgarianWords.txt");
+			File initialWords = new File("C:\\Users\\velis\\Desktop\\EnglishWords.txt");
+			File translationWords = new File("C:\\Users\\velis\\Desktop\\BulgarianWords.txt");
 			char[] text = textForTranslation.toCharArray();
 			// check if the input is in English or Bulgarian
 			for (int i = 0; i < text.length;) {
 				for (int j = 0; j < bulgarianAlphabet.length; j++) {
 					if (text[i] == (bulgarianAlphabet[j])) {
-						englishWords = new File("C:\\Users\\velis\\Desktop\\BulgarianWords.txt");
-						bulgarianWords = new File("C:\\Users\\velis\\Desktop\\EnglishWords.txt");
+						initialWords = new File("C:\\Users\\velis\\Desktop\\BulgarianWords.txt");
+						translationWords = new File("C:\\Users\\velis\\Desktop\\EnglishWords.txt");
 					}
 				}
 
@@ -195,15 +196,15 @@ public class TranslatorUI {
 			String translatedWord = null;
 			List<String> translatedSentence = new ArrayList<String>();
 
-			Scanner readEnglishWords = new Scanner(englishWords);
-			Scanner readBulgarianWords = new Scanner(bulgarianWords);
+			Scanner readInitialWordsFile = new Scanner(initialWords);
+			Scanner readTranslatedWordsFile = new Scanner(translationWords);
 			// Translation algorithm
 			while (!userInputSentence.isEmpty()) {
-				// While the text file has next line find the row where words
+				// Find the row where words
 				// have matched
-				while (readEnglishWords.hasNextLine()) {
-					currentWord = readEnglishWords.nextLine();
-					LINE_NUM++;
+				while (readInitialWordsFile.hasNextLine()) {
+					currentWord = readInitialWordsFile.nextLine();
+					lineNumber++;
 					if (userInputSentence.get(0).equals(currentWord)) {
 						break;
 					}
@@ -213,28 +214,29 @@ public class TranslatorUI {
 				 * line is added to the list
 				 */
 
-				while (LINE_NUM != currentLine) {
+				while (lineNumber != currentLine) {
 
-					translatedWord = readBulgarianWords.nextLine();
+					translatedWord = readTranslatedWordsFile.nextLine();
 					currentLine++;
+					// if the loop finds no matches throughout the document it
+					// returns the word
 
-					if (currentLine == MAX_ROWS) {
+					if (currentLine == MAX_ROWS + 1) {
 						translatedSentence.add(userInputSentence.get(0));
 						break;
 					}
 
-					if (LINE_NUM == currentLine) {
+					if (lineNumber == currentLine) {
 						translatedSentence.add(translatedWord);
 						break;
 					}
 				}
+
 				userInputSentence.remove(0);
-
 				currentLine = 0;
-				LINE_NUM = 0;
-
-				readEnglishWords = new Scanner(englishWords);
-				readBulgarianWords = new Scanner(bulgarianWords);
+				lineNumber = 0;
+				readInitialWordsFile = new Scanner(initialWords);
+				readTranslatedWordsFile = new Scanner(translationWords);
 			}
 
 			StringBuilder builder = new StringBuilder();
@@ -252,19 +254,17 @@ public class TranslatorUI {
 	}
 
 	private static int countLines() {
-	int lines = 0;
-	try {
-		BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\velis\\Desktop\\BulgarianWords.txt")); 
-		
-			while (reader.readLine() != null)
+		int lines = 0;
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\velis\\Desktop\\BulgarianWords.txt"));
+			while (reader.readLine() != null) {
 				lines++;
-			
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	
-	MAX_ROWS = lines - 1;
-	return lines;
-		
+
+		return lines;
+
 	}
 }
