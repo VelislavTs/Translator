@@ -56,34 +56,36 @@ public class InsertWordIntoDictionary extends ErrorPopUp {
 		frmInsertNewWords.setBounds(100, 100, 450, 300);
 		frmInsertNewWords.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmInsertNewWords.getContentPane().setLayout(null);
-		
+
 		JPanel addedEnglishWord = new JPanel();
-		addedEnglishWord.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "English word", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		addedEnglishWord.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "English word",
+				TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		addedEnglishWord.setBounds(12, 27, 408, 100);
 		frmInsertNewWords.getContentPane().add(addedEnglishWord);
 		addedEnglishWord.setLayout(null);
-		
+
 		englishWord = new JTextField();
 		englishWord.setFont(new Font("Arial Narrow", Font.BOLD | Font.ITALIC, 21));
 		englishWord.setHorizontalAlignment(SwingConstants.CENTER);
 		englishWord.setBounds(12, 27, 384, 45);
 		addedEnglishWord.add(englishWord);
 		englishWord.setColumns(10);
-		
+
 		JPanel addedBulgarianWord = new JPanel();
-		addedBulgarianWord.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Bulgarian word", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		addedBulgarianWord.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Bulgarian word",
+				TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		addedBulgarianWord.setBounds(12, 140, 408, 100);
 		frmInsertNewWords.getContentPane().add(addedBulgarianWord);
 		addedBulgarianWord.setLayout(null);
-		
+
 		JButton btnInsertWord = new JButton("Insert");
 		btnInsertWord.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(englishWord.getText().split(" ").length != 1 || bulgarianWord.getText().split(" ").length != 1) { 
+				if (englishWord.getText().split(" ").length != 1 || bulgarianWord.getText().split(" ").length != 1) {
 					ErrorPopUp showError = new ErrorPopUp();
 					ErrorPopUp.displayError();
 
-				} else { 
+				} else {
 					importEnglishText(englishWord.getText());
 					importBulgarianText(bulgarianWord.getText());
 				}
@@ -92,7 +94,7 @@ public class InsertWordIntoDictionary extends ErrorPopUp {
 		});
 		btnInsertWord.setBounds(153, 75, 97, 25);
 		addedBulgarianWord.add(btnInsertWord);
-		
+
 		bulgarianWord = new JTextField();
 		bulgarianWord.setFont(new Font("Arial Narrow", Font.BOLD | Font.ITALIC, 21));
 		bulgarianWord.setHorizontalAlignment(SwingConstants.CENTER);
@@ -120,11 +122,5 @@ public class InsertWordIntoDictionary extends ErrorPopUp {
 		} catch (IOException e) {
 			System.out.println(e);
 		}
-
-	}
-
-	private void showErrorFrame() {
-
-		
 	}
 }
