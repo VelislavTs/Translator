@@ -1,7 +1,7 @@
 import java.awt.EventQueue;
 
 public class TranslatorMain {
-//http://pastebin.com/xfsxx8mD
+	
 	public static void main(String[] args) {
 
 		EventQueue.invokeLater(new Runnable() {
